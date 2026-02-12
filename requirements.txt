@@ -1,1 +1,8 @@
-fastapi\nuvicorn\nrequests\nwebsockets\nelevenlabs\ngroq\npython-multipart
+fastapi
+uvicorn[standard]
+requests
+websockets
+elevenlabs
+groq
+python-multipart
+deepgram-sdk==3.*
