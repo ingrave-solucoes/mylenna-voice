@@ -1,0 +1,1 @@
+fastapi\nuvicorn\nrequests\nwebsockets\nelevenlabs\ngroq\npython-multipart
