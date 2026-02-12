@@ -229,7 +229,7 @@ async def stream(websocket: WebSocket):
 @app.api_route("/voice/webhook", methods=["GET", "POST"])
 async def webhook(request: Request):
     host = request.headers.get("host")
-    protocol = "wss" if "ingrave.com.br" in host or "ngrok" in host else "ws"
+    protocol = "wss" if "ingrave.com.br" in host or "ngrok" in host or "onrender.com" in host else "ws"
     response = ET.Element('Response')
     connect = ET.SubElement(response, 'Connect')
     ET.SubElement(connect, 'Stream', url=f'{protocol}://{host}/voice/stream')
