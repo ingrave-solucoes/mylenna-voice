@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: mylenna-voice
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
+    envVars:
+      - key: ELEVENLABS_API_KEY
+        value: sk_786a3d1611d8cb1351547486eb46750f5d4b79161b17fb87
+      - key: GROQ_API_KEY
+        value: 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
+      - key: CHATWOOT_ACCESS_TOKEN
+        value: tGRLZZZpPCjUauSBDVUUKjzq
+      - key: CHATWOOT_BASE_URL
+        value: https://app.ingrave.com.br
