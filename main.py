@@ -136,7 +136,7 @@ async def transcribe_audio(stream_sid: str):
     filename = f"/tmp/{stream_sid}.ulaw"
     wav_filename = f"/tmp/{stream_sid}.wav"
     with open(filename, "wb") as f: f.write(buffer)
-    subprocess.run(["/usr/bin/ffmpeg", "-y", "-f", "mulaw", "-ar", "8000", "-i", filename, "-ar", "16000", wav_filename], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(["ffmpeg", "-y", "-f", "mulaw", "-ar", "8000", "-i", filename, "-ar", "16000", wav_filename], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     try:
         with open(wav_filename, "rb") as file:
             transcription = client_groq.audio.transcriptions.create(file=(wav_filename, file.read()), model="whisper-large-v3", response_format="text", language="pt")
