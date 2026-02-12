@@ -240,6 +240,27 @@ async def webhook(request: Request):
 async def status(request: Request):
     return Response(content="OK", media_type="text/plain")
 
+@app.api_route("/voice/status-callback", methods=["GET", "POST"])
+async def status_callback(request: Request):
+    """Recebe status callbacks do Twilio para monitorar chamadas."""
+    try:
+        form_data = await request.form()
+        call_status = form_data.get("CallStatus")
+        call_sid = form_data.get("CallSid")
+        call_duration = form_data.get("CallDuration", "0")
+        
+        logger.info(f"[Twilio Callback] CallSid: {call_sid} | Status: {call_status} | Duração: {call_duration}s")
+        
+        # Aqui podemos adicionar lógica futura:
+        # - Atualizar Chatwoot quando chamada terminar
+        # - Salvar métricas em banco de dados
+        # - Enviar notificações
+        
+        return Response(content="OK", media_type="text/plain")
+    except Exception as e:
+        logger.error(f"[Status Callback] Erro: {e}")
+        return Response(content="ERROR", media_type="text/plain", status_code=500)
+
 async def send_heartbeat():
     """Envia sinal de vida para o BetterStack periodicamente."""
     while True:
