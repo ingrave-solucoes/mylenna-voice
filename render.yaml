@@ -3,7 +3,7 @@ services:
   # AMBIENTE DE PRODUÇÃO (MASTER)
   # -----------------------------------
   - type: web
-    name: mylenna-voice-prod
+    name: mylenna-voice
     runtime: docker
     repo: https://github.com/ingrave-solucoes/mylenna-voice
     branch: master
