@@ -1,14 +1,38 @@
 services:
+  # -----------------------------------
+  # AMBIENTE DE PRODUÇÃO (MASTER)
+  # -----------------------------------
   - type: web
-    name: mylenna-voice
-    env: docker
+    name: mylenna-voice-prod
+    runtime: docker
+    repo: https://github.com/ingrave-solucoes/mylenna-voice
+    branch: master
     plan: free
+    region: oregon
     envVars:
-      - key: ELEVENLABS_API_KEY
-        sync: false
-      - key: GROQ_API_KEY
-        sync: false
-      - key: CHATWOOT_ACCESS_TOKEN
-        sync: false
+      - key: PORT
+        value: 10000
+      - key: ENV_TYPE
+        value: production
+      # As chaves de API devem ser configuradas no Dashboard do Render por segurança
+      # ou via Group de Variáveis.
       - key: CHATWOOT_BASE_URL
-        sync: false
+        value: https://app.ingrave.com.br
+
+  # -----------------------------------
+  # AMBIENTE DE DESENVOLVIMENTO (DEVELOP)
+  # -----------------------------------
+  - type: web
+    name: mylenna-voice-dev
+    runtime: docker
+    repo: https://github.com/ingrave-solucoes/mylenna-voice
+    branch: develop
+    plan: free
+    region: oregon
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: ENV_TYPE
+        value: develop
+      - key: CHATWOOT_BASE_URL
+        value: https://app.ingrave.com.br
